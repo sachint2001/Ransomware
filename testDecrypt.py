@@ -48,8 +48,10 @@ def decrypt(dataFile, privateKeyFile):
 
     # save the decrypted data to file
     dataFile=str(dataFile)
-    [ fileName, fileExtension ] = dataFile.split('.')
-    decryptedFile = fileName + '_decrypted.' + fileExtension
+    # [ fileName, fileExtension ] = dataFile.split('.')
+    size=len(dataFile)
+    decryptedFile=dataFile[:size-8]
+    # decryptedFile = fileName + '_decrypted.' + fileExtension
     with open(decryptedFile, 'wb') as f:
         f.write(data)
 

