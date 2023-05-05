@@ -8,7 +8,7 @@ This is a ransomware program consisting of a client and a server made as part of
 
 ## Usage
 
-1. Clone the repo Generate RSA keys for the server
+1. Clone the repo
    ```sh
    git clone https://github.com/sachint2001/Ransomware.git
    ```
@@ -24,3 +24,4 @@ This is a ransomware program consisting of a client and a server made as part of
    ```sh
    python3 client/client.py
    ```
+   To decrypt the files, enter 111 as the payment reference number
