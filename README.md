@@ -24,4 +24,4 @@ This is a ransomware program consisting of a client and a server made as part of
    ```sh
    python3 client/client.py
    ```
-   To decrypt the files, enter 111 as the payment reference number
+   To decrypt the files, enter `111` as the payment reference number
